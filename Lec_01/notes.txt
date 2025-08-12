@@ -1,0 +1,9 @@
+1. pwd
+2. ls
+3. cd folderName  (cd A/B/C)
+4. cd .. (cd ../..)
+5. mkdir
+6. touch
+7. rm fileName
+8. rm -r folderName
+9. clear (ctrl + l)

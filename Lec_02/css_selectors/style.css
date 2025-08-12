@@ -1,0 +1,26 @@
+/* element selector */
+p{
+  color: red;
+}
+
+h1{
+  color: aqua;
+}
+
+/* class selector */
+.fav-movie{
+  color: yellow;
+}
+
+/* id selector */
+#special-para{
+  color: darkgreen;
+}
+
+/* universal selector */
+*{
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  /* border: 2px solid black; */
+}
