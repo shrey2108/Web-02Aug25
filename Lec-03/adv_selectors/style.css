@@ -1,0 +1,24 @@
+
+p span {
+  font-weight: bold;
+}
+
+/* ol li span{
+  color: red;
+} */
+
+/* .list li span{
+  color: green;
+}
+
+div > p {
+  color: orange;
+} */
+
+/* li+li {
+  color: blue;
+} */
+
+li ~ li {
+  color: red;
+}
