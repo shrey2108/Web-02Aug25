@@ -1,0 +1,42 @@
+/* .container {
+  width: 600px;
+  height: 400px;
+  border: 2px solid black;
+}
+
+.child-1 {
+  border: 2px solid red;
+  width: 40%;
+}
+
+.child-2 {
+  border: 2px solid green;
+  height: 100%;
+} */
+
+/* =================== rem */
+/* html{
+  font-size: 20px;
+} */
+
+/* article p {
+  font-size: 16px;
+}
+
+article h3{
+  font-size: 24px;
+} */
+
+/* ======================= em */
+
+article{
+  font-size: 24px;
+}
+
+article p {
+  font-size: 0.8em;
+}
+
+article h3 {
+  font-size: 0.5em;
+}

@@ -1,0 +1,58 @@
+.square{
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  margin: 0 auto;
+}
+
+.circle{
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  margin: 0 auto;
+  /* border-radius: 20px; */
+  border-radius: 50%;
+  /* border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px; */
+}
+
+.parent{
+  border: 2px solid black;
+}
+
+/* .child-1, .child-2{
+  border: 2px solid red;
+} */
+
+.child{
+  border: 2px solid red;
+}
+
+.child-1{
+  /* margin-bottom: 10px; */
+  /* margin-top: 10px; */
+  /* margin-left: 10px; */
+  /* margin-right: 10px; */
+  /* margin: 20px 80px; */
+  margin: 20px 40px 60px 60px;
+}
+
+.parent{
+  width: 50vw;
+  /* margin-left: 30px; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  margin: 0 auto;
+}
+
+.doubt{
+  border: 2px solid black;
+  width: 200px;
+  margin: 0 auto;
+}
+
+
+
+
