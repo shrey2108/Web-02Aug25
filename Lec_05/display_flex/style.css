@@ -1,0 +1,45 @@
+.child{
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+}
+
+.parent{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#container{
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#item{
+  width: 100px;
+  height: 100px;
+  border: 2px solid red;
+}
+
+/* .parent2{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.parent3{
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+} */

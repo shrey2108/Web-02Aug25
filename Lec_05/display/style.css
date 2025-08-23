@@ -1,0 +1,20 @@
+.div1{
+  display: block;
+  border: 2px solid black;
+  height: 100px;
+  width: 300px;
+}
+
+.div2 {
+  display: inline-block;
+  border: 2px solid black;
+  height: 100px;
+  width: 300px;
+}
+
+span{
+  border: 2px solid black;
+  /* padding: 20px; */
+  /* margin: 20px; */
+  /* display: block; */
+}
