@@ -1,0 +1,36 @@
+
+.container{
+  border: 2px solid black;
+  background-color: aquamarine;
+  width: 200px;
+  height: 200px;
+
+  /* animation-name: bgChange; */
+  /* animation-duration: 2s; */
+  /* animation-iteration-count: infinite; */
+  /* animation-fill-mode: forwards; */
+  /* animation-delay: 4s; */
+  /* animation-direction: alternate; */
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+  /* animation-timing-function: linear; */
+
+  animation: move 2s ease-in-out infinite alternate;
+}
+
+/* @keyframes bgChange {
+  from{
+    background-color: aquamarine
+  }
+
+  to{
+    background-color: blue;
+    transform: translateX(200px);
+  }
+} */
+
+
+@keyframes move {
+  100%{
+    transform: translateX(500px) translateY(500px);
+  }
+}
