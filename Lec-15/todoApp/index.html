@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="container">
+      <header>
+          <h1>Todo List</h1>
+      </header>
+      <div class="todo-input">
+          <input type="text" placeholder="Add a new task..."/>
+          <button id="add-btn">Add</button>
+      </div>
+      <ul class="todo-list">
+          <li class="todo-item">
+              <div>
+                <input type="checkbox">
+                <span>Buy groceries</span>
+              </div>
+              <div>
+                <span>⬆️</span>
+                <span>⬇️</span>
+                <button class="delete-btn">Delete</button>
+              </div>
+          </li>
+          <li class="todo-item">
+              <div>
+                <input type="checkbox">
+                <span>Buy groceries</span>
+              </div>
+              <div>
+                <span>⬆️</span>
+                <span>⬇️</span>
+                <button class="delete-btn">Delete</button>
+              </div>
+          </li>
+          <li class="todo-item">
+              <div>
+                <input type="checkbox">
+                <span>Buy groceries</span>
+              </div>
+              <div>
+                <span>⬆️</span>
+                <span>⬇️</span>
+                <button class="delete-btn">Delete</button>
+              </div>
+          </li>
+      </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
