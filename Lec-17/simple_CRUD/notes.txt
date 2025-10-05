@@ -1,0 +1,18 @@
+// CRUD
+
+2 req => method and route
+
+GET (BULK)
+  Method: GET, Route: "/products"
+
+GET (single)
+  Method: GET, Route: 
+
+CREATE: => req.body
+  Method: POST, Route: "/products"
+
+UPDATE:
+
+
+DELETE:
+
