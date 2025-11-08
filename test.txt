@@ -1,0 +1,30 @@
+Build a simple REST API for managing students and courses using Node, Express and MongoDB
+
+Student Collection
+name - string
+age - Number
+courseIds - [ObjectId] (Array of courses the student is enrolled in)
+
+Courses collection
+title - string
+duration - string
+instructor - string (Instructor's name)
+
+API Endpoints
+Course Routes
+- POST /api/courses
+- GET /api/courses
+- GET /api/courses/:id
+- PUT /api/courses/:id
+- DELETE /api/courses/:id
+
+Student Routes
+- POST /api/students
+- GET /api/students
+- GET /api/students/:id
+- PUT /api/students/:id/enrol
+
+Optional Feature
+GET /api/stats => show how many students are enrolled in each course
+(Hint use $lookup and $project in aggregation)
+
