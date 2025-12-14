@@ -21,8 +21,8 @@ async function sendMessage({io, userId, data}) {
       conversationId: convo._id,
     });
 
-    io.to(to).emit(EVENTS["MESSAGE:NEW"], msg);
-    io.to(userId).emit(EVENTS["MESSAGE:NEW"], msg);
+    io.to(to).emit(EVENTS.MESSAGE_NEW, msg);
+    io.to(userId).emit(EVENTS.MESSAGE_NEW, msg);
 
   } catch (error) {
     console.log(error);

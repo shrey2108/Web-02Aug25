@@ -1,3 +1,4 @@
+const EVENTS = require("./events");
 const { sendMessage } = require("./helpers");
 
 function chat(io) {
@@ -5,7 +6,7 @@ function chat(io) {
     const userId = socket.user.id;
     socket.join(userId);
 
-    socket.on("message:send", (data) => {
+    socket.on(EVENTS.MESSAGE_SEND, (data) => {
       console.log(typeof io, userId, data)
       sendMessage({io, userId, data});
     })
