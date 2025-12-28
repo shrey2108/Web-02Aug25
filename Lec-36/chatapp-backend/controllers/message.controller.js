@@ -3,61 +3,66 @@ const ConversationModel = require("../models/conversation.model");
 
 module.exports.getMessages = async (req, res) => {
   try {
-    let { page=1, limit=20 } = req.query;
+    let { page = 1, limit = 20 } = req.query;
     const { conversationId } = req.params;
     const userId = req.user.id;
 
     page = parseInt(page);
     limit = parseInt(limit);
 
-    if(!conversationId) {
+    if (!conversationId) {
       return res.status(400).json({
         success: false,
         message: "conversationId is required",
-      })
+      });
     }
 
     const conversation = await ConversationModel.findOne({
       _id: conversationId,
-      participants: userId
-    })
+      participants: userId,
+    });
 
-    if(!conversation){
+    if (!conversation) {
       return res.status(400).json({
         success: false,
         message: "Access denied",
-      })
+      });
     }
 
-    const skip = (page-1)*limit;
+    const skip = (page - 1) * limit;
     const messages = await MessageModel.find({
-      conversationId
+      conversationId,
     })
       .skip(skip)
       .limit(limit)
       .populate({
         path: "from",
-        select: "_id fullName email"
+        select: "_id fullName email",
       })
       .populate({
         path: "to",
-        select: "_id fullName email"
+        select: "_id fullName email",
       })
-      .sort({createdAt: -1});
+      .sort({ createdAt: -1 });
+
+    const total = await MessageModel.countDocuments({ conversationId });
+    const hasMore = page * limit < total;
 
     res.status(200).json({
       success: true,
-      data: messages
-    })
-    
+      data: {
+        messages,
+        hasMore,
+      },
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong fetching messages",
-      error: error.message
-    })
+      error: error.message,
+    });
   }
-}
+};
 
 module.exports.sendMessage = async (req, res) => {
   try {
@@ -71,12 +76,12 @@ module.exports.sendMessage = async (req, res) => {
       });
     };
 
-    const conversation = await ConversationModel.findOne({
+    let conversation = await ConversationModel.findOne({
       _id: conversationId,
-      participants: {$all : [senderId, receiverId]}
+      participants: { $all: [senderId, receiverId] },
     });
 
-    if(!conversation) {
+    if (!conversation) {
       return res.status(400).json({
         success: false,
         message: "conversation not found",
@@ -84,27 +89,61 @@ module.exports.sendMessage = async (req, res) => {
     }
 
     // create message
-
-    const message = await MessageModel.create({
+    let message = await MessageModel.create({
       conversationId,
-      to: senderId,
-      from: receiverId,
-      content
+      to: receiverId,
+      from: senderId,
+      content,
+    });
+    message = await message.populate([
+      { path: "to", select: "_id email fullName" },
+      { path: "from", select: "_id email fullName" },
+    ]);
+
+    // update lastMesasge in conversation
+    await ConversationModel.findByIdAndUpdate(conversationId, {
+      lastMessage: message._id,
+      updatedAt: new Date(),
     });
 
+    conversation = await ConversationModel.findById(conversationId).populate([
+      {
+        path: "participants",
+        select: "_id fullName email",
+      },
+      {
+        path: "lastMessage",
+        select: "content from createdAt"
+      }
+    ]);
+
+    const convo = conversation.toObject();
+
     // send message to receiver using socket
-    req.app.get("io").to(receiverId).emit("message:new", message);
+    const io = req.app.get("io");
+    io.to(receiverId).emit("message:new", {
+      conversation: {
+        ...convo,
+        participants: convo.participants.filter(u => u._id.equals(senderId))
+      },
+      message,
+    });
 
     res.status(201).json({
       success: true,
-      data: message
-    })
-
+      data: {
+        conversation: {
+          ...convo,
+          participants: convo.participants.filter(u => !u._id.equals(senderId))
+        },
+        message,
+      }
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
       message: "Something went wrong in sending message",
-      error: error.message
-    })
+      error: error.message,
+    });
   }
-}
+};

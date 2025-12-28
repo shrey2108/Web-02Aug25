@@ -26,8 +26,6 @@ async function seedUsers() {
     password: bcrypt.hashSync("1234", 10)
   }));
 
-  console.log(dummy_users)
-
   const users = await UserModel.create(dummy_users);
   console.log("User seeded successfuly", users);
   process.exit(1);

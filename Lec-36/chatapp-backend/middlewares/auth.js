@@ -9,7 +9,6 @@ async function auth(req, res, next) {
   try {
     const payload = verifyToken(token);
     const user = await UserModel.findById(payload.id);
-    console.log(user);
     if(!user) {
       res.status(404).json({
         success: false,

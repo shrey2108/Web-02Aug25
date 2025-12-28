@@ -12,6 +12,10 @@ module.exports.getAll = async (req, res) => {
         select: "_id fullName email",
         match: {_id: { $ne: userId }}
       })
+      .populate({
+        path: "lastMessage",
+        select: "content from createdAt",
+      })
       .sort({updatedAt: -1});
 
     res.status(200).json({
